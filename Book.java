@@ -15,4 +15,21 @@ public class Book{
     public String getGenre() {
         return genre;
     }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
+    }
+
+    @Override
+    public String toString() {
+        return "" +
+                "genre: " + genre + "\n" +
+                "Name of the book: " + title + "\n" +
+                "Author's name: " + author + "\n" +
+                "is borrowed: " + isBorrowed + "\n";
+    }
 }
