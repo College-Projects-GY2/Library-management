@@ -40,4 +40,33 @@ public class Member {
             books[i] = borrowedBooks[i];
         return books;
     }
+
+    public int getBorrowedCount(){
+        return  borrowedCount;
+    }
+
+    public boolean borrowBook(Book book){
+        if(borrowedCount == borrowedBooks.length)
+            return false;
+        borrowedBooks[borrowedCount] = book;
+        borrowedCount++;
+        return true;
+    }
+
+    public boolean returnBook(Book book){
+        boolean flag = false;
+        for(int  i = 0 ; i < borrowedBooks.length ; i++)
+            if(book == borrowedBooks[i]){
+              borrowedBooks[i] = null;
+              flag = true;
+              borrowedCount --;
+              break;
+          }
+        if(!flag)
+            return false;
+        for(int i = 0 ; i < borrowedBooks.length - 1 ; i ++)
+            if(borrowedBooks[i] == null)
+                borrowedBooks[i] = borrowedBooks[i + 1];
+        return true;
+    }
 }
