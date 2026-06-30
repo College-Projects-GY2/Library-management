@@ -26,8 +26,7 @@ public class Book{
 
     @Override
     public String toString() {
-        return "" +
-                "genre: " + genre + "\n" +
+        return "genre: " + genre + "\n" +
                 "Name of the book: " + title + "\n" +
                 "Author's name: " + author + "\n" +
                 "is borrowed: " + isBorrowed + "\n";
