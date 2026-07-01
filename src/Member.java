@@ -3,7 +3,7 @@ public class Member {
     private String username;
     private String password;
     private boolean isPremium;
-    private []Book borrowedBooks;
+    private Book[] borrowedBooks;
     private int borrowedCount;
 
     public Member(String id, String user, String pass, boolean premium){
@@ -35,7 +35,11 @@ public class Member {
     }
 
     public Book[] getBorrowedBooks(){
-        Book[] books = new Book[borrowedCount + 1];
+        if(borrowedCount==borrowedBooks.length)
+            return borrowedBooks;
+        if (borrowedCount==0)
+            return new Book[0];
+        Book[] books = new Book[borrowedCount];
         for(int i = 0 ; i < books.length ; i++)
             books[i] = borrowedBooks[i];
         return books;
@@ -48,25 +52,28 @@ public class Member {
     public boolean borrowBook(Book book){
         if(borrowedCount == borrowedBooks.length)
             return false;
+
         borrowedBooks[borrowedCount] = book;
         borrowedCount++;
         return true;
     }
 
     public boolean returnBook(Book book){
+        if (borrowedCount==0)
+            return false;
         boolean flag = false;
-        for(int  i = 0 ; i < borrowedBooks.length ; i++)
+        for(int  i = 0 ; i < borrowedCount ; i++)
             if(book == borrowedBooks[i]){
-              borrowedBooks[i] = null;
-              flag = true;
-              borrowedCount --;
-              break;
-          }
+                borrowedBooks[i] = null;
+                flag = true;
+                borrowedCount --;
+                break;
+            }
         if(!flag)
             return false;
-        for(int i = 0 ; i < borrowedBooks.length - 1 ; i ++)
+        for(int i = 0 ; i < borrowedCount ; i ++)
             if(borrowedBooks[i] == null)
                 borrowedBooks[i] = borrowedBooks[i + 1];
-        return true;
+        return flag;
     }
 }

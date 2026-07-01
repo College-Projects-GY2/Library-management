@@ -4,6 +4,13 @@ public class Book{
     private String genre;
     private boolean isBorrowed;
 
+    public Book(String title,String author,String genre){
+        this.title=title;
+        this.author=author;
+        this.genre=genre;
+        isBorrowed=false;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -26,8 +33,7 @@ public class Book{
 
     @Override
     public String toString() {
-        return "" +
-                "genre: " + genre + "\n" +
+        return "genre: " + genre + "\n" +
                 "Name of the book: " + title + "\n" +
                 "Author's name: " + author + "\n" +
                 "is borrowed: " + isBorrowed + "\n";
