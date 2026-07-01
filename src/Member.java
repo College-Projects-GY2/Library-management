@@ -35,6 +35,10 @@ public class Member {
     }
 
     public Book[] getBorrowedBooks(){
+        if(borrowedCount==borrowedBooks.length)
+            return borrowedBooks;
+        if (borrowedCount==0)
+            return new Book[0];
         Book[] books = new Book[borrowedCount];
         for(int i = 0 ; i < books.length ; i++)
             books[i] = borrowedBooks[i];
@@ -48,14 +52,17 @@ public class Member {
     public boolean borrowBook(Book book){
         if(borrowedCount == borrowedBooks.length)
             return false;
+
         borrowedBooks[borrowedCount] = book;
         borrowedCount++;
         return true;
     }
 
     public boolean returnBook(Book book){
+        if (borrowedCount==0)
+            return false;
         boolean flag = false;
-        for(int  i = 0 ; i < borrowedBooks.length ; i++)
+        for(int  i = 0 ; i < borrowedCount ; i++)
             if(book == borrowedBooks[i]){
                 borrowedBooks[i] = null;
                 flag = true;
@@ -64,9 +71,9 @@ public class Member {
             }
         if(!flag)
             return false;
-        for(int i = 0 ; i < borrowedBooks.length - 1 ; i ++)
+        for(int i = 0 ; i < borrowedCount ; i ++)
             if(borrowedBooks[i] == null)
                 borrowedBooks[i] = borrowedBooks[i + 1];
-        return true;
+        return flag;
     }
 }
