@@ -4,6 +4,13 @@ public class Book{
     private String genre;
     private boolean isBorrowed;
 
+    public Book(String title,String author,String genre){
+        this.title=title;
+        this.author=author;
+        this.genre=genre;
+        isBorrowed=false;
+    }
+
     public String getTitle() {
         return title;
     }
