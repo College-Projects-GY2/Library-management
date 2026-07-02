@@ -56,5 +56,26 @@ public class Library {
        this.bookCount++;
        return true;
     }
+    public boolean removeBook(String title, String author, String genre) {
+        int targetIndex = -1;
+
+        for (int i = 0; i < this.bookCount; i++) {
+            if (this.book[i].getTitle().equals(title) && this.book[i].getAuthor().equals(author) && this.book[i].getGenre().equals(genre)) {
+                targetIndex = i;
+                break;
+            }
+        }
+        if (targetIndex == -1) {
+            return false;
+        }
+
+        for (int i = targetIndex; i < this.bookCount - 1; i++) {
+            this.book[i] = this.book[i + 1];
+        }
+
+        this.book[this.bookCount - 1] = null;
+        this.bookCount--;
+        return true;
+    }
 
 }
