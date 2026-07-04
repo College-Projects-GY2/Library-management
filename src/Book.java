@@ -30,7 +30,6 @@ public class Book{
     public void setBorrowed(boolean borrowed) {
         isBorrowed = borrowed;
     }
-
     @Override
     public String toString() {
         return "genre: " + genre + "\n" +
