@@ -77,5 +77,27 @@ public class Library {
         this.bookCount--;
         return true;
     }
+    public Book[] getBooks() {
+        Book[] activeBooks = new Book[this.bookCount];
+        for (int i = 0; i < this.bookCount; i++) {
+            activeBooks[i] = this.book[i];
+        }
+        return activeBooks;
+    }
 
+    public int getBookCount() {
+        return this.bookCount;
+    }
+
+    public int getMemberCount() {
+        return this.memberCount;
+    }
+
+    public String[] getAllId() {
+        String[] ids = new String[this.memberCount];
+        for (int i = 0; i < this.memberCount; i++) {
+            ids[i] = this.members[i].getId();
+        }
+        return ids;
+    }
 }
