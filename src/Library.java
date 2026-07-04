@@ -48,5 +48,14 @@ public class Library {
 
         return null;
     }
+    public boolean addBook(String title, String author, String genre){
+        if (this.bookCount >= 100) {
+            return false;
+        }
+
+        this.book[this.bookCount] = new Book(title, author, genre);
+        this.bookCount++;
+        return true;
+    }
 
 }
