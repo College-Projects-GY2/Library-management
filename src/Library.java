@@ -35,5 +35,18 @@ public class Library {
         this.memberCount++;
         return true;
     }
+    public Object login(String idOrUser, String password) {
+        if (this.admin.getUsername().equals(idOrUser) && this.admin.getPassword().equals(password)) {
+            return this.admin;
+        }
+
+        for (int i = 0; i < this.memberCount; i++) {
+            if (this.members[i].getId().equals(idOrUser) && this.members[i].getPassword().equals(password)) {
+                return this.members[i];
+            }
+        }
+
+        return null;
+    }
 
 }

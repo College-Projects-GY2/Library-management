@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56c93990-720f-4fd6-82b3-185d9e903818" name="Changes" comment="create functions getBooks, getBookCount, getAllId, getMamberCount">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
+    <list default="true" id="56c93990-720f-4fd6-82b3-185d9e903818" name="Changes" comment=" create function Library">
       <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +125,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1782999160686</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL‎-00007" summary=" create function Library">
+      <option name="closed" value="true" />
+      <created>1783198929348</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL‎-00007" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1783198929349</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +157,7 @@
     <MESSAGE value=" create function addBook" />
     <MESSAGE value="create function  removeBook" />
     <MESSAGE value="create functions getBooks, getBookCount, getAllId, getMamberCount" />
-    <option name="LAST_COMMIT_MESSAGE" value="create functions getBooks, getBookCount, getAllId, getMamberCount" />
+    <MESSAGE value=" create function Library" />
+    <option name="LAST_COMMIT_MESSAGE" value=" create function Library" />
   </component>
 </project>
