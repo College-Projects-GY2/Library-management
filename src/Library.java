@@ -7,7 +7,7 @@ public class Library {
     public Library() {
         this.book = new Book[100];
         this.bookCount = 0;
-        this.members = new Member[100];
+        this.members = new Member[50];
         this.memberCount = 0;
         this.admin = new Admin("admin", "admin123");
         creatingTenBooks();
@@ -19,4 +19,21 @@ public class Library {
             this.bookCount++;
         }
     }
+
+    public boolean registerMember(String id, String user, String pass, boolean premium) {
+        if (this.memberCount >= 50) {
+            return false;
+        }
+
+        for (int i = 0; i < this.memberCount; i++) {
+            if (this.members[i].getId().equals(id)) {
+                return false;
+            }
+        }
+
+        this.members[this.memberCount] = new Member(id, user, pass, premium);
+        this.memberCount++;
+        return true;
+    }
+
 }
