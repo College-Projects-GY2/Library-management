@@ -150,4 +150,71 @@ public class LibrarySystem {
             }
         System.out.println("\n");
     }
-}
+    public void showAdminMenu() {
+        boolean running = true;
+
+        while (running) {
+            System.out.println("*** Admin Menu ***");
+            System.out.println("------------------");
+            System.out.println("1. Add a Book");
+            System.out.println("2. Remove a Book");
+            System.out.println("3. View All Books (By Genre)");
+            System.out.println("4. Search for a Book (By Title/Genre)");
+            System.out.println("5. Log Out");
+            System.out.print("Please enter your choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Please enter title: ");
+                    String title = scanner.next();
+                    System.out.print("Please enter author: ");
+                    String author = scanner.next();
+                    System.out.print("Please enter genre: ");
+                    String genre = scanner.next();
+
+                    if (library.addBook(title, author, genre)) {
+                        System.out.println("\nThe book was successfully added.\n");
+                    } else {
+                        System.out.println("\nError: Library is full\n");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Please enter title to remove: ");
+                    String removeTitle = scanner.next();
+                    System.out.print("Please enter author: ");
+                    String removeAuthor = scanner.next();
+                    System.out.print("Please enter genre: ");
+                    String removeGenre = scanner.next();
+
+                    if (library.removeBook(removeTitle, removeAuthor, removeGenre)) {
+                        System.out.println("\nThe book was successfully removed.\n");
+                    } else {
+                        System.out.println("\nError: Book not found\n");
+                    }
+                    break;
+
+                case 3:
+                    printBooksByGenre(library.getBooks());
+                    break;
+
+                case 4:
+                    System.out.print("please enter title or genre: ");
+                    String searchQuery = scanner.next();
+                    printBookFindByGenreOrTitle(library.getBooks(), searchQuery);
+                    break;
+
+                case 5:
+                    running = false;
+                    break;
+
+                default:
+                    running = false;
+                    break;
+            }
+        }
+    }
+    }
+
