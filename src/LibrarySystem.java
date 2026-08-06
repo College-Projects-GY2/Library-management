@@ -216,5 +216,145 @@ public class LibrarySystem {
             }
         }
     }
+    public void handleRegistration() {
+        if (library.getMemberCount() >= 50) {
+            System.out.println("*** Library Management System ***");
+            System.out.println("---------------------------------");
+            System.out.println("Sorry, there is no room in the directory to create a new user.");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+            return;
+        }
+
+        scanner.nextLine();
+
+        System.out.println("*** Registration Menu *** ");
+        System.out.println("-------------------------");
+        System.out.print("Enter full name: ");
+        String name = scanner.nextLine();
+
+        String id = "";
+        boolean idOk = false;
+        while (!idOk) {
+            System.out.println("*** Registration Menu *** ");
+            System.out.println("-------------------------");
+            System.out.print("Enter id: ");
+            id = scanner.nextLine();
+
+            if (!isValidId(id)) {
+                System.out.println("*** Registration Menu *** ");
+                System.out.println("-------------------------");
+                System.out.println("Invalid ID number. Please try again.");
+            } else if (idExists(id)) {
+                System.out.println("*** Registration Menu *** ");
+                System.out.println("-------------------------");
+                System.out.println("This ID number is already registered.");
+            } else {
+                idOk = true;
+            }
+        }
+
+        System.out.println("*** Registration Menu *** ");
+        System.out.println("-------------------------");
+        System.out.print("Press 1 for Regular User, or other number for Premium User: ");
+        String typeInput = scanner.nextLine();
+        boolean isPremium;
+        if (typeInput.equals("1")) {
+            isPremium = false;
+        } else {
+            isPremium = true;
+        }
+
+        String password = "";
+        boolean passwordOk = false;
+        boolean firstTry = true;
+        while (!passwordOk) {
+            if (firstTry) {
+                System.out.println("*** Registration Menu *** ");
+                System.out.println("-------------------------");
+                System.out.println("Password requirements:");
+                System.out.println("At least 1 digit");
+                System.out.println("At least 1 special character ($, %, _)");
+                System.out.print(" Enter Password: ");
+            } else {
+                System.out.println("*** Registration Menu *** ");
+                System.out.println("--------------------------");
+                System.out.println("Weak password! Please try again. ");
+                System.out.println("Requirements: At least 1 digit and 1 special character ($, %, _) ");
+                System.out.print("Enter Password: ");
+            }
+            password = scanner.nextLine();
+            if (isStrongPassword(password)) {
+                passwordOk = true;
+            } else {
+                firstTry = false;
+            }
+        }
+
+        library.registerMember(id, name, password, isPremium);
     }
+
+    private boolean isValidId(String id) {
+        if (id.length() != 9) {
+            return false;
+        }
+        for (int i = 0; i < 9; i++) {
+            if (!Character.isDigit(id.charAt(i))) {
+                return false;
+            }
+        }
+
+        int sum = 0;
+        for (int i = 0; i < 9; i++) {
+            int digit = id.charAt(i) - '0';
+            int product;
+            if (i % 2 == 0) {
+                product = digit * 1;
+            } else {
+                product = digit * 2;
+            }
+            if (product > 9) {
+                product = product - 9;
+            }
+            sum = sum + product;
+        }
+
+        if (sum % 10 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean idExists(String id) {
+        String[] allIds = library.getAllId();
+        for (int i = 0; i < allIds.length; i++) {
+            if (allIds[i].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isStrongPassword(String password) {
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (Character.isDigit(c)) {
+                hasDigit = true;
+            }
+            if (c == '$' || c == '%' || c == '_') {
+                hasSpecial = true;
+            }
+        }
+        if (hasDigit && hasSpecial) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
