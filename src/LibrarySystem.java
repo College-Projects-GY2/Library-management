@@ -356,5 +356,28 @@ public class LibrarySystem {
             return false;
         }
     }
+
+    public void handleLogin() {
+        System.out.println("*** Login Menu ***");
+        System.out.println("------------------");
+        System.out.print("Enter ID / Username: ");
+        String username = scanner.next();
+        System.out.print("Enter Password: ");
+        String password = scanner.next();
+
+        // שימוש בפונקציית ההתחברות הקיימת במחלקת Library
+        Object user = library.login(username, password);
+
+        if (user instanceof Admin) {
+            System.out.println("\nLogin successful. Welcome Admin!\n");
+            showAdminMenu();
+        } else if (user instanceof Member) {
+            Member member = (Member) user;
+            System.out.println("\nLogin successful. Welcome " + member.getUsername() + "!\n");
+            showMemberMenu(member);
+        } else {
+            System.out.println("\nError: Invalid ID or password. Please try again.\n");
+        }
+    }
 }
 
