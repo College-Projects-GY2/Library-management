@@ -379,5 +379,35 @@ public class LibrarySystem {
             System.out.println("\nError: Invalid ID or password. Please try again.\n");
         }
     }
+    public void start() {
+        while (true) {
+            System.out.println("\n*** Main Menu ***");
+            System.out.println("-----------------");
+            System.out.println("1. Registration");
+            System.out.println("2. Login");
+            System.out.println("Press any other number to Exit");
+            System.out.print("Please enter your choice: ");
+
+            // מניעת קריסה במקרה של קלט שאינו מספר
+            if (!scanner.hasNextInt()) {
+                System.out.println("\nExiting system. Goodbye!\n");
+                break;
+            }
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    handleRegistration();
+                    break;
+                case 2:
+                    handleLogin();
+                    break;
+                default:
+                    System.out.println("\nExiting system. Goodbye!\n");
+                    return; // יציאה מהלולאה וסיום התוכנית
+            }
+        }
+    }
 }
 
